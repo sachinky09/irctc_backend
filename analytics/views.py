@@ -4,10 +4,10 @@ from rest_framework import status, permissions
 from irctc_backend.mongo import mongo_collection
 
 class TopRoutesView(APIView):
-    permission_classes = [permissions.IsAdminUser]  # or IsAuthenticated if needed
+    permission_classes = [permissions.IsAdminUser] 
 
     def get(self, request):
-        # MongoDB aggregation pipeline
+     
         pipeline = [
             {
                 "$group": {
@@ -24,7 +24,7 @@ class TopRoutesView(APIView):
 
         results = list(mongo_collection.aggregate(pipeline))
 
-        # Format response
+      
         top_routes = [
             {
                 "source": r["_id"]["source"],
